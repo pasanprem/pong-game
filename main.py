@@ -1,8 +1,9 @@
 # Pong Game - Part of the 100 Days of Code Udemy course
 
-from turtle import Turtle, Screen
+from turtle import Screen
 from paddle import Paddle
 from ball import Ball
+from score import Scoreboard
 import time
 
 screen = Screen()
@@ -14,6 +15,7 @@ screen.tracer(0)
 r_paddle = Paddle((350, 0))
 l_paddle = Paddle((-350, 0))
 ball = Ball()
+score = Scoreboard()
 
 
 screen.update()
@@ -28,6 +30,7 @@ game_is_on = True
 
 while game_is_on:
     time.sleep(0.1)
+    score.write_score()
     screen.update()
     ball.move()
 
@@ -39,5 +42,12 @@ while game_is_on:
     # Detect collision with paddle
     if ball.distance(r_paddle) < 50 and ball.xcor() > 320 or ball.distance(l_paddle) < 50 and ball.xcor() < -320:
         ball.bounce_x()
+
+    if ball.xcor() > 380 or ball.xcor() < -380 :
+        score.score_increase(ball.xcor())
+        ball.reset()
+
+
+
 
 screen.exitonclick()
