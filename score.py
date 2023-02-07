@@ -17,7 +17,7 @@ class Scoreboard(Turtle):
         self.write(f"Score - {self.l_score} : {self.r_score}", align=ALIGNMENT, font=FONT)
 
     def score_increase(self, x_cord):
-        if x_cord < 0 :
+        if x_cord > 0 :
             self.l_score += 1
         else:
             self.r_score += 1
